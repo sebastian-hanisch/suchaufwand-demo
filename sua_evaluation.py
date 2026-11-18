@@ -278,7 +278,7 @@ def verdict_weg(art: str, alpha: float, T: int, tab: dict | None, live: dict) ->
             f"mit Ziel {ivl(tab['greedy_ziel'])}; Mähen über das ganze Gebiet {ivl(tab['maehen_ganz'])}, Mähen im besten Rechteck {ivl(tab['maehen_rechteck'])} Punkte hinter dem Optimum. "
             f"Die Orienteering-Fassung (jede Zelle nur beim ersten Besuch gewertet, günstigster Fall) liegt {ivl(tab['orient'])} Punkte dahinter und überschätzt die Entdeckungswahrscheinlichkeit um {ivl(tab['ueberschaetzung'])}.")
     if alpha >= 3.0:
-        text += (f" Bei großem α zählt jede Zelle praktisch nur einmal: das ist ein Orienteering-Problem, siehe [gewinn-touren-demo]({C.ORIENTEERING_LINK}).")
+        text += (f" Bei großem α zählt jede Zelle praktisch nur einmal: das ist in der Wertung ein Orienteering-Problem (Prämie je Zelle einmalig; Fahrzeuge, Rückkehr zum Depot und Fahrzeiten kommen dort hinzu), siehe [gewinn-touren-demo]({C.ORIENTEERING_LINK}).")
     return "info", text
 
 
@@ -329,5 +329,5 @@ def verdict_elastizitaet(a: dict | None) -> tuple[str, str]:
         return "warning", "Keine Wolke, keine Elastizität."
     el = a["elastizitaet"]
     if el < 1:
-        return "success", f"Die Elastizität des Verlusts liegt bei {z(el, 2)}: die Verzögerung kostet weniger, als ihr Anteil an der Startzeit erwarten lässt (unter 1 heißt unterproportional)."
-    return "warning", f"Die Elastizität des Verlusts liegt bei {z(el, 2)}: die Verzögerung kostet mindestens so viel, wie ihr Anteil an der Startzeit erwarten lässt (Randfall: nur unsicherer Strom, knapper Aufwand)."
+        return "success", f"Die Elastizität des Verlusts liegt bei {z(el, 2)}: P fällt prozentual langsamer, als die Startzeit steigt (unter 1 heißt unterproportional)."
+    return "warning", f"Die Elastizität des Verlusts liegt bei {z(el, 2)}: P fällt prozentual mindestens so schnell, wie die Startzeit steigt (Randfall: nur unsicherer Strom, knapper Aufwand)."

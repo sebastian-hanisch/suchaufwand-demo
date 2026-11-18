@@ -326,7 +326,7 @@ def ansicht_weg():
     c1, c2, c3 = st.columns(3)
     with c1:
         art = regler_auswahl("w_prior", "Prior (Karte)", "Ein Gipfel, zwei Gipfel oder flach (alle Wege über T verschiedene Zellen sind dann optimal).", C.PRIOR_NAMEN, radio=True)
-        alpha = regler_auswahl("w_alpha", "Entdeckungsstärke α je Durchgang", "Bei großem α zählt jede Zelle praktisch nur einmal: ein Orienteering-Problem.")
+        alpha = regler_auswahl("w_alpha", "Entdeckungsstärke α je Durchgang", "Bei großem α zählt jede Zelle praktisch nur einmal: in der Wertung ein Orienteering-Problem.")
     with c2:
         Tn = regler_auswahl("w_T", "Zeitschritte T des Teams", "Ein Schritt = ein Durchgang an der aktuellen Zelle; die Anfahrt zählt als Suchen.")
         inst = regler_zahl("w_inst", "Instanz Nr. (Zufalls-Seed 1 bis 30)", "Die 30 Instanzen, über die gemittelt wurde; nur für diese liegen die vorgerechneten Wege vor.")
@@ -455,6 +455,31 @@ def _grenzen_und_mathe(ansicht: str):
     with st.expander("🚧 Wo die Annahmen enden"):
         st.markdown(T.GRENZEN[ansicht])
     with st.expander("📐 Mathematische Formulierung"):
+        # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/suchaufwand-erklaert.json, nicht von Hand ändern)
+        st.markdown(
+            r"""
+**Lesehilfe.** Gegeben sind eine Karte $p$, eine Entdeckungsstärke $\alpha$ und ein Budget (Ansichten Zuteilung, Nichtfund und Weg) beziehungsweise die Streuung einer Driftwolke (Ansicht Drift). Gesucht sind die Zuteilung der Durchgänge, die Karte nach einem Nichtfund, der Weg des Teams oder der Verlust bei späterem Start. Die Formeln stehen je Ansicht und gelten nur dort.
+
+| Symbol | Bedeutung |
+|---|---|
+| $i = 1, \dots, N$ | Zelle des Gitters, $N$ ist die Zahl der Zellen |
+| $p_i$ | Aufenthaltswahrscheinlichkeit in Zelle $i$ vor der Suche (Prior), Summe 1 |
+| $\alpha$ | Entdeckungsstärke je Durchgang; ein Durchgang entdeckt ein Ziel in der Zelle mit Wahrscheinlichkeit $1 - e^{-\alpha}$ |
+| $c_i, B$ | Aufwand eines Durchgangs in Zelle $i$ (ohne Gelände 1), Budget in Aufwandseinheiten |
+| $z_i$ | Zahl der Durchgänge in Zelle $i$ (ganzzahlig, nicht negativ) |
+| $P, \Delta_i$ | Entdeckungswahrscheinlichkeit, Zuwachs durch den nächsten Durchgang in Zelle $i$ (Grenzzuwachs) |
+| $q_i$ | Wahrscheinlichkeit der Zelle $i$ nach einem Nichtfund (Posterior) |
+| $P_1, P_2$ | Entdeckungswahrscheinlichkeit der Runde 1 und der Runde 2 (Ansicht Nichtfund) |
+| $x_{t,i}, T, b$ | 1, wenn das Team im Schritt $t$ in Zelle $i$ sucht; Zahl der Zeitschritte; Basiszelle |
+| $N(j)$ | Zelle $j$ und ihre Nachbarzellen (nicht die Zellenzahl $N$) |
+| $S(t), s_0, D, s_U$ | Varianz der Wolke je Achse zur Zeit $t$; Streuung des Starts, Diffusion, Unsicherheit der konstanten Geschwindigkeit |
+| $E, L$ | Suchaufwand (teilbar, Flächeneinheiten); $L = \sqrt{\alpha E / (\pi S)}$ |
+| $t_0, d$ | Startzeit und relative Verzögerung; Verlust und Elastizität siehe letzte Formel |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/suchaufwand-erklaert.html#fachleute)
+            """
+        )
+        # erklaerseite:lesehilfe:end
         st.markdown(T.MATHE_LESEHILFE[ansicht])
         for gl in T.MATHE_GLEICHUNGEN[ansicht]:
             st.latex(gl)

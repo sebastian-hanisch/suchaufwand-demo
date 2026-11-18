@@ -23,6 +23,19 @@ with st.container(key="kopf"):
     st.title("🧭 " + T.TITEL)
 st.markdown(T.EINLEITUNG)
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/suchaufwand-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Ein Team sucht in Gelände oder auf See nach einem Vermissten. Wo er ist, weiß niemand genau, nur wie wahrscheinlich er an welcher Stelle ist: Das ist die Karte. Ein Durchgang durch ein Feld findet ihn, falls er dort ist, nur mit einer gewissen Chance. Die Demo fragt in vier Ansichten: Wohin gehört der nächste Durchgang? Was ändert ein Nichtfund an der Karte? Was kostet der Weg des Teams? Und wie wächst die Wolke möglicher Orte, wenn ein Ziel treibt und später gesucht wird?
+
+Alles ist erfunden und stark vereinfacht. Die Demo ist ein Anwendungsbeispiel, keine Beratung und keine Einsatzempfehlung.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/suchaufwand-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 st.caption("🔗 Die Adresszeile oben spiegelt Ihre aktuelle Konfiguration wider – einfach kopieren, um ein Szenario zu teilen.")
 
 load_permalink_settings()

@@ -93,7 +93,7 @@ PRESET_HELP = {
     "Falsches α: zu hoch": "Zuteilung mit angenommener Entdeckungsstärke 10, bewertet mit der wahren Stärke 1.",
     "Weg: ein Gipfel, α = 1, T = 15": "5×5-Gitter, Team ab der Ecke, 15 Schritte; Wegoptimum gegen Greedy, Mähen und Orienteering-Fassung.",
     "Weg: zwei Gipfel": "Wie zuvor mit zwei Gipfeln: ein Rechteck deckt beide Wolken nicht ab.",
-    "Weg: α = 10 (Orienteering)": "Sichere Entdeckung: jede Zelle zählt nur beim ersten Besuch, das ist ein Orienteering-Problem.",
+    "Weg: α = 10 (Orienteering)": "Sichere Entdeckung: jede Zelle zählt nur beim ersten Besuch, das ist in der Wertung ein Orienteering-Problem.",
     "See: gemischte Drift": "Start- und Strömungsunsicherheit mit Diffusion (s0 = 1, D = 0,5, sU = 0,3): Fläche und Verzögerungsverlust.",
     "See: nur unsicherer Strom": "Nur die je Teilchen konstante Geschwindigkeitsunsicherheit (D = 0): die Fläche wächst mit dem Quadrat der Zeit.",
 }

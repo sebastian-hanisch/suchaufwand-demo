@@ -221,6 +221,8 @@ def test_falsches_alpha_aggregate():
     fa = F.messreihe("falsches_alpha")
     assert sum(1 for r in fa.values() if r["0.25"]["mittel"] > r["4.0"]["mittel"]) == 7  # zu niedrig schadet beim gleichen Faktor 4 in 7 von 8 Zellen mehr
     assert a["0.25"]["mittel"] > a["4.0"]["mittel"] and "Beim gleichen Faktor schadet ein zu niedriges α etwas mehr als ein zu hohes" in README
+    belegt("Faktor 2: 1,77 gegen 1,67, nur in 5 von 8 Zellen", f"Faktor 2: {z(a['0.5']['mittel'], 2)} gegen {z(a['2.0']['mittel'], 2)}, nur in {sum(1 for r in fa.values() if r['0.5']['mittel'] > r['2.0']['mittel'])} von {a['zellen']} Zellen")
+    assert "in 7 von 8 Zellen" in README
 
 
 def test_eine_nichtfund_zelle_im_band_neu_gerechnet():

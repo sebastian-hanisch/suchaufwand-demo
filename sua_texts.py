@@ -82,7 +82,7 @@ minus seine wahre Entdeckungswahrscheinlichkeit.
 """,
     "drift": """
 **Geschlossene Form** für eine Gauß-Wolke bei optimal verteiltem, teilbarem Aufwand E: P = 1 − (1 + L) · e^(−L) mit L = √(α E / (π S)). **Verzögerung:** E bleibt gleich, die Wolke ist inzwischen größer.
-**Verlust** = 1 − P(verzögert) / P(pünktlich). **Elastizität** = −ln(P₁/P₀) / ln(t₁/t₀): unter 1 kostet die Verzögerung weniger, als ihr Anteil an der Startzeit erwarten lässt.
+**Verlust** = 1 − P(verzögert) / P(pünktlich). **Elastizität** = −ln(P₁/P₀) / ln(t₁/t₀): unter 1 fällt P prozentual langsamer, als die Startzeit steigt.
 **Zwei Hypothesen:** zwei Wolken gleichen Gewichts im Abstand 2·dv·t (Querwind links und rechts); die optimale Verteilung wird numerisch auf einem Raster gelöst (Wasserstand-Lösung).
 """,
 }
@@ -102,7 +102,7 @@ GRENZEN = {
 - **Gitter:** 8×8 und 12×12; im Gelände nur 8×8.
 """,
     "nichtfund": GRENZEN_ALLGEMEIN + """
-- **„Aktualisieren bringt 0“** gilt nur bei **frei verteilbarem Aufwand**: jede Runde darf jede Zelle beliebig bedienen. Im Rechteck-Muster ist das kurzsichtig aktualisierte Vorgehen nicht mehr optimal.
+- **„Aktualisieren bringt 0“** gilt im Wert (derselbe Gesamtwert) nur bei **frei verteilbarem Aufwand** und gleichem Preis je Zelle: jede Runde darf jede Zelle beliebig bedienen. Im Rechteck-Muster ist das kurzsichtig aktualisierte Vorgehen nicht mehr optimal.
 - **Falsches α** ist nur für den wahren Wert α = 1 und acht Zellen gemessen; die Wirkung eines Nichtfunds hängt von der Objektart ab (nach SAROPS: Floß gegen Person im Wasser).
 - Die Karte nach Nichtfund bleibt hier eine Karte; ein Ziel, das **seinen Zustand ändert** (Boot, Rettungsinsel, Person im Wasser), braucht ein Mehrzustandsmodell und ändert, welche Gebiete zuerst abgesucht werden. Die Entdeckungswahrscheinlichkeit der Demo wertet alle Funde gleich.
 """,
@@ -130,7 +130,7 @@ MATHE_LESEHILFE = {
 
 | Symbol | Bedeutung |
 |---|---|
-| i = 1…N | Zelle des Gitters |
+| i = 1…N | Zelle des Gitters, N ist die Zahl der Zellen |
 | p_i | Aufenthaltswahrscheinlichkeit (Prior), Summe 1 |
 | α | Entdeckungsstärke je Durchgang |
 | c_i | Aufwand eines Durchgangs in Zelle i (ohne Gelände 1) |
@@ -144,7 +144,7 @@ MATHE_LESEHILFE = {
 | Symbol | Bedeutung |
 |---|---|
 | p_i, z_i, α | wie in Ansicht 1 |
-| P | Entdeckungswahrscheinlichkeit der Runde 1 |
+| P, P₁, P₂ | Entdeckungswahrscheinlichkeit der Runde 1 (P = P₁); P₂ die der Runde 2 auf der Karte q |
 | q_i | Posterior nach Nichtfund |
 | α_ang | angenommene Entdeckungsstärke (falsches α) |
 """,
@@ -155,7 +155,7 @@ MATHE_LESEHILFE = {
 |---|---|
 | x_(t,i) | 1, wenn das Team im Schritt t in Zelle i sucht |
 | z_i | Zahl der Schritte in Zelle i |
-| N(j) | Zelle j und ihre Nachbarzellen |
+| N(j) | Zelle j und ihre Nachbarzellen (nicht die Zellenzahl N) |
 | b | Basiszelle (Zelle 0) |
 """,
     "drift": """
@@ -168,6 +168,7 @@ MATHE_LESEHILFE = {
 | E | Suchaufwand (teilbar, Flächeneinheiten) |
 | L | √(α E / (π S)) |
 | P | optimale Entdeckungswahrscheinlichkeit |
+| t₀, d, P₀, P₁ | Startzeit, relative Verzögerung; P₀ und P₁ die Werte beim Start t₀ und beim späteren Start t₁ = t₀(1 + d) (nicht die Runden der Ansicht Nichtfund) |
 """,
 }
 

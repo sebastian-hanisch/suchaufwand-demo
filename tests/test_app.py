@@ -38,16 +38,20 @@ def test_app_laedt_ohne_ausnahme_und_zeigt_hinweis_und_kernfrage():
     assert "Anwendungsbeispiel, keine Beratung" in texte and "Kernfrage" in texte
     assert [e.label for e in at.expander if "Wie wir das erreichen" in e.label] and [e.label for e in at.expander if "Wo die Annahmen enden" in e.label]
     assert [e.label for e in at.expander if "Mathematische Formulierung" in e.label]
+    assert [e.label for e in at.expander if e.label == "💬 In einfachen Worten"]
+    assert "https://sebastianhanisch.net/suchaufwand-erklaert.html)" in texte
 
 
 @pytest.mark.parametrize("ansicht", C.ANSICHTEN)
-def test_jede_ansicht_zeigt_kernfrage_verdikt_pdf_und_drei_expander(ansicht):
+def test_jede_ansicht_zeigt_kernfrage_verdikt_pdf_und_die_expander(ansicht):
     at = _app(ansicht)
     assert any(m.value.startswith("## ❓ Kernfrage") for m in at.markdown)
     assert at.info or at.success
     labels = [e.label for e in at.expander]
-    for teil in ("Wie wir das erreichen", "Wo die Annahmen enden", "Mathematische Formulierung"):
+    for teil in ("Wie wir das erreichen", "Wo die Annahmen enden", "Mathematische Formulierung", "In einfachen Worten"):
         assert any(teil in label for label in labels), (ansicht, teil)
+    lesehilfe = [m.value for m in at.markdown if m.value.lstrip().startswith("**Lesehilfe.**")]
+    assert len(lesehilfe) == 1 and "suchaufwand-erklaert.html#fachleute" in lesehilfe[0], ansicht   # die Lesehilfe der Erklärseite steht einmal je Ansicht im mathematischen Expander
     assert len(at.get("download_button")) >= 1
 
 
