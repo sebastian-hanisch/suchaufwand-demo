@@ -10,7 +10,7 @@ TITEL = "Suchaufwand: wo sucht man, wenn nichts gefunden wurde"
 EINLEITUNG = f"""
 {C.HINWEIS}
 
-Ein Team sucht in Gelände oder auf See ein **ruhendes Ziel**, dessen Ort nur als **Wahrscheinlichkeitskarte** (Prior) bekannt ist. Die Demo fragt in vier Ansichten,
+Ein Team sucht in Gelände oder auf See ein **ruhendes Ziel**, dessen Ort nur als **Wahrscheinlichkeitskarte** (englisch Probability Map, Prior) bekannt ist. Die Demo fragt in vier Ansichten,
 **wohin der nächste Durchgang gehört**, was ein **Nichtfund** an der Karte ändert, was der **Weg** des Teams kostet und wie schnell eine **Driftwolke** wächst
 (Kulisse Berg- und Seerettung, alles erfunden). Weiter unten: die **Kernfrage** der Ansicht und die Expander **🔧 Wie wir das erreichen – vollständiger Methodenvergleich**,
 **🚧 Wo die Annahmen enden** und **📐 Mathematische Formulierung**.
