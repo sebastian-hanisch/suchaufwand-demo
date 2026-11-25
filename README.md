@@ -1,7 +1,6 @@
 # Suchaufwand: wo sucht man, wenn nichts gefunden wurde – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-suchaufwand-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-suchaufwand-demo.streamlit.app/)**
 
 **Anwendungsbeispiel, keine Beratung.** Alle Instanzen, Karten, Zahlen und Zeitmaße sind erfunden und stammen aus einem Modell mit den Annahmen, die unter „Ehrliche Grenzen“ stehen. Die Demo sagt nichts über echte Einsätze und gibt keine Einsatzempfehlung.
 
